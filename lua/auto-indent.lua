@@ -14,6 +14,10 @@ M.config = config
 
 ---@param args Config?
 M.setup = function(args)
+  if type(args.indentexpr) ~= "function" then
+    args.indentexpr = nil
+    vim.print("auto-indent.nvim: indentexpr should be a function, fallback to use vim.o.indentexpr")
+  end
   M.config = vim.tbl_deep_extend("force", M.config, args or {})
 end
 
