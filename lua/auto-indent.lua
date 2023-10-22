@@ -1,7 +1,9 @@
 local module = require("auto-indent.module")
 
 ---@class Config
+---@field indentexpr fun(): integer?
 local config = {
+  -- indentexpr = require("treesitter.indent").get_indent,
 }
 
 ---@class MyModule
@@ -20,7 +22,7 @@ M.check_indent = function()
 
   local indent_char = vim.api.nvim_buf_get_option(buf, "expandtab") and " " or "\t"
   local indent_num = vim.api.nvim_buf_get_option(buf, "tabstop")
-  local indents = module.get_current_line_indent(buf)
+  local indents = module.get_current_line_indent(buf, row, M.config.indentexpr)
 
   module.put_chars(indent_char, indent_num, indents, col)
 end
@@ -34,7 +36,7 @@ M.check_indent_light = function()
   end
   local indent_char = module.indent_info_tbl[buf].indent_char
   local indent_num = module.indent_info_tbl[buf].indent_num
-  local indents = module.get_current_line_indent_light(buf)
+  local indents = module.get_current_line_indent_light(buf, row)
 
   module.put_chars(indent_char, indent_num, indents, col)
 end

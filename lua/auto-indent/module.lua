@@ -1,5 +1,5 @@
 ---@class BufferIndentInfo
----@field indentexpr string
+---@field indentexpr string | fun(): integer
 ---@field indentchar string
 ---@field indentnum number
 local BII = {
@@ -15,21 +15,28 @@ local M = {}
 M.indent_info_tbl = {}
 
 ---@param bufnr number
-M.fetch_buf_indent_info = function(bufnr)
+---@param indentexpr_func fun(): integer?
+M.fetch_buf_indent_info = function(bufnr, indentexpr_func)
   local indentexpr = vim.api.nvim_buf_get_option(bufnr, "indentexpr")
   local indent_char = vim.api.nvim_buf_get_option(bufnr, "expandtab") and " " or "\t"
   local indent_num = vim.api.nvim_buf_get_option(bufnr, "tabstop")
 
   M.indent_info_tbl[bufnr] = {
-    indentexpr = (indentexpr == nil or indentexpr == "") and "" or string.sub(indentexpr, 1, -3),
+    indentexpr = indentexpr_func or ((indentexpr == nil or indentexpr == "") and "" or string.sub(indentexpr, 1, -3)),
     indent_char = indent_char,
     indent_num = indent_num,
   }
 end
 
 ---@param bufnr number
+---@param row number
+---@param indentexpr_func fun(): integer?
 ---@return number
-M.get_current_line_indent = function(bufnr)
+M.get_current_line_indent = function(bufnr, row, indentexpr_func)
+  if indentexpr_func and type(indentexpr_func) == "function" then
+    local isSuccess, result = pcall(indentexpr_func, row)
+    return isSuccess and result or 0
+  end
   local indentexpr = vim.api.nvim_buf_get_option(bufnr, "indentexpr")
   if indentexpr == nil or indentexpr == "" then
     return 0
@@ -40,13 +47,15 @@ M.get_current_line_indent = function(bufnr)
 end
 
 ---@param bufnr number
+---@param row number
 ---@return number
-M.get_current_line_indent_light = function(bufnr)
+M.get_current_line_indent_light = function(bufnr, row)
   local indentexpr = M.indent_info_tbl[bufnr].indentexpr
-  if indentexpr == "" then
+  local is_vim_func = type(indentexpr) == "string"
+  if is_vim_func and indentexpr == "" then
     return 0
   end
-  local isSuccess, result = pcall(vim.fn[indentexpr])
+  local isSuccess, result = is_vim_func and pcall(vim.fn[indentexpr]) or pcall(indentexpr, row)
   return isSuccess and result or 0
 end
 
