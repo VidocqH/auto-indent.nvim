@@ -1,6 +1,6 @@
 --- Neovim default settings
 ---@class BufferIndentInfo
----@field indentexpr string | fun(): integer
+---@field indentexpr string | fun(row: number): integer
 ---@field indent_char string
 ---@field indent_num number
 local BII = {
@@ -16,7 +16,7 @@ local M = {}
 M.indent_info_tbl = {}
 
 ---@param bufnr number
----@param indentexpr_func fun(): integer?
+---@param indentexpr_func fun(row: number): integer?
 M.fetch_buf_indent_info = function(bufnr, indentexpr_func)
   local indentexpr = vim.api.nvim_buf_get_option(bufnr, "indentexpr")
   local indent_char = vim.api.nvim_buf_get_option(bufnr, "expandtab") and " " or "\t"
@@ -52,11 +52,17 @@ end
 ---@return number
 M.get_current_line_indent_light = function(bufnr, row)
   local indentexpr = M.indent_info_tbl[bufnr].indentexpr
-  local is_vim_func = type(indentexpr) == "string"
-  if is_vim_func and indentexpr == "" then
+  if type(indentexpr) == "string" and indentexpr == "" then
     return 0
   end
-  local isSuccess, result = is_vim_func and pcall(vim.fn[indentexpr]) or pcall(indentexpr, row)
+
+  local isSuccess, result
+  if type(indentexpr) == "string" then
+    isSuccess, result = pcall(vim.fn[indentexpr])
+  else
+    isSuccess, result = pcall(indentexpr, row)
+  end
+  -- print(vim.result)
   return isSuccess and result or 0
 end
 
