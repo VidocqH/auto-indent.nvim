@@ -17,9 +17,19 @@ requir("lazy").setup({
 
 ### Configuration
 
+### Default Config
+
 ```lua
 {
-  -- Custom indent evaluate function
+  lightmode = true    -- Lightmode assumes tabstop and indentexpr not change within buffer's lifetime
+  indentexpr = nil
+}
+```
+
+### Custom Indent Evaluate Method
+
+```lua
+{
   -- lnum: line number
   indentexpr = function (lnum)
     return require("nvim-treesitter.indent").get_indent(lnum)

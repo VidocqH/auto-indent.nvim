@@ -1,7 +1,8 @@
+--- Neovim default settings
 ---@class BufferIndentInfo
 ---@field indentexpr string | fun(): integer
----@field indentchar string
----@field indentnum number
+---@field indent_char string
+---@field indent_num number
 local BII = {
   indentexpr = "",
   indent_char = "\t",

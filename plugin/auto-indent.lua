@@ -5,11 +5,16 @@ vim.api.nvim_create_autocmd("BufRead", {
     local config = require("auto-indent").config
 
     local buf = e.buf
-    require("auto-indent.module").fetch_buf_indent_info(buf, config.indentexpr)
+    if config.lightmode then
+      require("auto-indent.module").fetch_buf_indent_info(buf, config.indentexpr)
+    end
 
     vim.keymap.set("i", "<tab>", function()
-      -- require("auto-indent").check_indent_light()
-      require("auto-indent").check_indent()
+      if config.lightmode then
+        require("auto-indent").check_indent_light()
+      else
+        require("auto-indent").check_indent()
+      end
     end, { buffer = buf })
   end,
 })

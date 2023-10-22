@@ -1,9 +1,10 @@
 local module = require("auto-indent.module")
 
 ---@class Config
+---@field lightmode boolean
 ---@field indentexpr fun(): integer?
 local config = {
-  -- indentexpr = require("treesitter.indent").get_indent,
+  lightmode = true,
 }
 
 ---@class MyModule
