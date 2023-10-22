@@ -1,4 +1,4 @@
-vim.api.nvim_create_user_command("MyFirstFunction", require("auto-indent").check_indent, {})
+vim.api.nvim_create_user_command("AutoIndentGetIndents", require("auto-indent").check_indent, {})
 
 vim.api.nvim_create_autocmd("BufRead", {
   callback = function(e)
