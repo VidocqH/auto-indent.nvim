@@ -5,6 +5,7 @@ A simple util providing auto indent when cursor at the first column and press <T
 ## Installation
 
 ### Lazy
+
 ```lua
 requir("lazy").setup({
   {
@@ -12,4 +13,15 @@ requir("lazy").setup({
     opts = {},
   },
 })
+```
+
+### Configuration
+
+```lua
+{
+  -- Custom indent evaluate function
+  indentexpr = function (lnum)
+    return require("nvim-treesitter.indent").get_indent(lnum)
+  end
+}
 ```
