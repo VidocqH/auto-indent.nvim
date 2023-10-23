@@ -25,7 +25,7 @@ requir("lazy").setup({
 ```lua
 {
   lightmode = true,    -- Lightmode assumes tabstop and indentexpr not change within buffer's lifetime
-  indentexpr = nil,
+  indentexpr = nil,    -- Use vim.bo.indentexpr by default
 }
 ```
 
