@@ -2,9 +2,7 @@
 
 A simple util providing auto indent like VSCode when cursor at the first column and press \<TAB\> key
 
-
 https://github.com/VidocqH/auto-indent.nvim/assets/16725418/b0eda63f-9b7d-4708-8477-00bde49d8f40
-
 
 ## Installation
 
@@ -25,8 +23,9 @@ requir("lazy").setup({
 
 ```lua
 {
-  lightmode = true,    -- Lightmode assumes tabstop and indentexpr not change within buffer's lifetime
-  indentexpr = nil,    -- Use vim.bo.indentexpr by default
+  lightmode = true,        -- Lightmode assumes tabstop and indentexpr not change within buffer's lifetime
+  indentexpr = nil,        -- Use vim.bo.indentexpr by default, see 'Custom Indent Evaluate Method'
+  ignore_filetype = {},    -- Disable plugin for specific filetypes, e.g. ignore_filetype = { 'javascript' }
 }
 ```
 

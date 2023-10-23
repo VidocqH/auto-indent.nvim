@@ -3,9 +3,11 @@ local module = require("auto-indent.module")
 ---@class Config
 ---@field lightmode boolean
 ---@field indentexpr nil | fun(lnum: integer): integer
+---@field ignore_filetype string[]
 local config = {
   lightmode = true,
   indentexpr = nil,
+  ignore_filetype = {},
 }
 
 ---@class MyModule
