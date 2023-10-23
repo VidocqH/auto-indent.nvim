@@ -2,8 +2,7 @@
 
 A simple util providing auto indent when cursor at the first column and press <tab> like VSCode
 
-
-https://github.com/VidocqH/auto-indent.nvim/assets/16725418/f90b9209-ecde-4f41-9f97-329f5b7ced12
+https://github.com/VidocqH/auto-indent.nvim/assets/16725418/b0eda63f-9b7d-4708-8477-00bde49d8f40
 
 
 ## Installation
