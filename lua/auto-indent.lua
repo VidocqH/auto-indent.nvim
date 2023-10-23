@@ -2,9 +2,10 @@ local module = require("auto-indent.module")
 
 ---@class Config
 ---@field lightmode boolean
----@field indentexpr fun(): integer?
+---@field indentexpr nil | fun(lnum: integer): integer
 local config = {
   lightmode = true,
+  indentexpr = nil,
 }
 
 ---@class MyModule
