@@ -1,6 +1,7 @@
 # AutoIndent.nvim
 
-A simple util providing auto indent when cursor at the first column and press <tab> like VSCode
+A simple util providing auto indent like VSCode when cursor at the first column and press \<TAB\> key
+
 
 https://github.com/VidocqH/auto-indent.nvim/assets/16725418/b0eda63f-9b7d-4708-8477-00bde49d8f40
 
