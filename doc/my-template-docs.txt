@@ -1,4 +1,4 @@
-*my-template-docs.txt*     For Neovim >= 0.8.0    Last change: 2023 October 23
+*my-template-docs.txt*     For Neovim >= 0.8.0    Last change: 2023 October 26
 
 ==============================================================================
 Table of Contents                         *my-template-docs-table-of-contents*
@@ -38,11 +38,11 @@ CONFIGURATION                 *my-template-docs-autoindent.nvim-configuration*
 DEFAULT CONFIG ~
 
 >lua
-    {
+    require("auto-indent").setup({
       lightmode = true,        -- Lightmode assumes tabstop and indentexpr not change within buffer's lifetime
       indentexpr = nil,        -- Use vim.bo.indentexpr by default, see 'Custom Indent Evaluate Method'
       ignore_filetype = {},    -- Disable plugin for specific filetypes, e.g. ignore_filetype = { 'javascript' }
-    }
+    })
 <
 
 
