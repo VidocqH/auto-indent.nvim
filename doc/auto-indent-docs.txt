@@ -1,4 +1,4 @@
-*auto-indent-docs.txt*     For Neovim >= 0.8.0    Last change: 2023 October 26
+*auto-indent-docs.txt*    For Neovim >= 0.8.0    Last change: 2023 November 03
 
 ==============================================================================
 Table of Contents                         *auto-indent-docs-table-of-contents*
@@ -48,7 +48,7 @@ DEFAULT CONFIG ~
 
 CUSTOM INDENT EVALUATE METHOD ~
 
-`indentexpr` should be a function returns a number of indents
+`indentexpr` should be a function returns quantity of indents
 
 example using treesitter.indent
 <https://github.com/nvim-treesitter/nvim-treesitter#indentation> module
