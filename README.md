@@ -31,7 +31,7 @@ require("auto-indent").setup({
 
 ### Custom Indent Evaluate Method
 
-`indentexpr` should be a function returns a number of indents
+`indentexpr` should be a function returns quantity of indents
 
 example using [treesitter.indent](https://github.com/nvim-treesitter/nvim-treesitter#indentation) module
 
